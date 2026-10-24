@@ -1,0 +1,186 @@
+{
+  "fixture_only": true,
+  "source_audit_sha256": "6b3515159bed725471ed6ea12ef6841b01077c56a2280ce2749e5dd2aa5f5dea",
+  "calls": [
+    {
+      "structured_output": {
+        "connectivity": true
+      },
+      "provider_structured_output": {
+        "connectivity": true
+      }
+    },
+    {
+      "structured_output": {
+        "classification": {
+          "category": "authentication",
+          "confidence": 0.9,
+          "evidence_references": [
+            "E01",
+            "E04",
+            "E05",
+            "E06",
+            "E07",
+            "E08",
+            "E09",
+            "E20"
+          ],
+          "reasoning": "The observed HTTP status code is 401 Unauthorized, indicating an authentication failure. The logs show that the upstream response was inspected with a valid signature, but the issuer URLs differ slightly (one has a trailing slash), which might cause authentication rejection. There is no evidence of authorization denial, validation errors, rate limiting, timeouts, server errors, schema mismatches, or dependency failures. Therefore, the failure is best categorized as an authentication issue."
+        },
+        "evidence_contract": "evidence-handles-v1",
+        "evidence_snapshot": "1a4994ebdfcc493f0504b4f534f42a9ef2b7e728124a426fd0ca5c506c7e59b9"
+      },
+      "provider_structured_output": {
+        "classification": {
+          "category": "authentication",
+          "confidence": 0.9,
+          "evidence_references": [
+            "E01",
+            "E04",
+            "E05",
+            "E06",
+            "E07",
+            "E08",
+            "E09",
+            "E20"
+          ],
+          "reasoning": "The observed HTTP status code is 401 Unauthorized, indicating an authentication failure. The logs show that the upstream response was inspected with a valid signature, but the issuer URLs differ slightly (one has a trailing slash), which might cause authentication rejection. There is no evidence of authorization denial, validation errors, rate limiting, timeouts, server errors, schema mismatches, or dependency failures. Therefore, the failure is best categorized as an authentication issue."
+        },
+        "evidence_contract": "evidence-handles-v1",
+        "evidence_snapshot": "1a4994ebdfcc493f0504b4f534f42a9ef2b7e728124a426fd0ca5c506c7e59b9"
+      }
+    },
+    {
+      "structured_output": {
+        "completeness": "complete",
+        "diagnostic_gaps": [],
+        "evidence_contract": "evidence-handles-v1",
+        "evidence_snapshot": "1a4994ebdfcc493f0504b4f534f42a9ef2b7e728124a426fd0ca5c506c7e59b9",
+        "selected_evidence_handles": [
+          "E01",
+          "E04",
+          "E05",
+          "E06",
+          "E07",
+          "E08",
+          "E09",
+          "E20"
+        ]
+      },
+      "provider_structured_output": {
+        "completeness": "complete",
+        "diagnostic_gaps": [],
+        "evidence_contract": "evidence-handles-v1",
+        "evidence_snapshot": "1a4994ebdfcc493f0504b4f534f42a9ef2b7e728124a426fd0ca5c506c7e59b9",
+        "selected_evidence_handles": [
+          "E01",
+          "E04",
+          "E05",
+          "E06",
+          "E07",
+          "E08",
+          "E09",
+          "E20"
+        ]
+      }
+    },
+    {
+      "provider_structured_output": {
+        "diagnosis": {
+          "confidence": 0.7,
+          "diagnostic_checks": [
+            "Inspect token validation logs for expiration and claim errors",
+            "Verify authentication configuration regarding issuer URL matching and trailing slash handling",
+            "Collect network traces or proxy logs to detect intermediary modifications"
+          ],
+          "discriminating_evidence_ids": [
+            "E05",
+            "E06",
+            "E07"
+          ],
+          "missing_evidence": [
+            {
+              "description": "Token validation details including expiration and claims",
+              "required_to_resolve": "Confirm if token is expired or invalid despite valid signature"
+            },
+            {
+              "description": "Configuration or policy documentation on issuer URL matching rules",
+              "required_to_resolve": "Determine if trailing slash difference causes authentication rejection"
+            },
+            {
+              "description": "Network traces or logs confirming presence or absence of intermediaries",
+              "required_to_resolve": "Confirm or exclude intermediary/proxy involvement in authentication failure"
+            }
+          ],
+          "selected_hypothesis_id": "H1",
+          "status": "tentative",
+          "summary": "The most supported hypothesis is that the authentication failure is caused by the issuer URL mismatch (presence vs absence of trailing slash) leading to token rejection despite a valid signature, resulting in HTTP 401 Unauthorized. However, uncertainty remains due to lack of direct evidence that the trailing slash difference is significant and no explicit token validation details. Alternative causes such as token expiration or intermediary interference cannot be ruled out without further evidence.",
+          "uncertainty": [
+            "Significance of trailing slash difference in issuer URLs is assumed but not confirmed",
+            "No direct evidence of token expiration or claim validation status",
+            "No evidence confirming or denying intermediary involvement"
+          ]
+        },
+        "evidence_contract": "evidence-handles-v1",
+        "evidence_snapshot": "1a4994ebdfcc493f0504b4f534f42a9ef2b7e728124a426fd0ca5c506c7e59b9",
+        "hypotheses": [
+          {
+            "assumptions": [
+              "The trailing slash difference in issuer URLs is significant for authentication validation",
+              "Valid signature indicates token integrity but does not guarantee acceptance if issuer mismatch occurs"
+            ],
+            "confidence": 0.7,
+            "contradicting_evidence_ids": [],
+            "description": "Authentication failure due to issuer URL mismatch causing token rejection despite valid signature",
+            "hypothesis_id": "H1",
+            "supporting_evidence_ids": [
+              "E01",
+              "E05",
+              "E06",
+              "E07",
+              "E20"
+            ]
+          },
+          {
+            "assumptions": [
+              "Signature validity does not imply token validity in terms of expiration or claims",
+              "Issuer URL mismatch is not the cause"
+            ],
+            "confidence": 0.5,
+            "contradicting_evidence_ids": [
+              "E05",
+              "E06"
+            ],
+            "description": "Authentication failure due to invalid or expired token despite valid signature",
+            "hypothesis_id": "H2",
+            "supporting_evidence_ids": [
+              "E01",
+              "E07",
+              "E20"
+            ]
+          },
+          {
+            "assumptions": [
+              "The ERROR log level and message might indicate intermediary involvement",
+              "No direct evidence of intermediary presence"
+            ],
+            "confidence": 0.3,
+            "contradicting_evidence_ids": [
+              "E07"
+            ],
+            "description": "Authentication failure caused by an intermediary or proxy modifying or rejecting the request",
+            "hypothesis_id": "H3",
+            "missing_evidence": [
+              "Evidence of intermediary presence or modification"
+            ],
+            "supporting_evidence_ids": [
+              "E01",
+              "E08",
+              "E09"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

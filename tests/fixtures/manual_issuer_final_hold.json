@@ -1,0 +1,264 @@
+{
+  "origin": {
+    "investigation_id": "89738f60-5fe9-4d58-b0ad-1b2b95f0213f",
+    "state_sha256": "375b0132463c2a46705c2a7f05c7d79c4643f79613084246a78781ec3651d4f9",
+    "checkpoint_sha256": "e57575d37e8971dfcfdb23aa17251200b800da1b030347b31166de93a570e777",
+    "original_provider_wording_available": false,
+    "capture": "Sanitized persisted application state; enforced read-only transaction"
+  },
+  "state": {
+    "status": "awaiting_evidence",
+    "evidence": {
+      "items": [
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/fields/issuer_configured",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:a28022ef5de042052a4d334c",
+          "observation": "https://identity.example.invalid/realm",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/fields/issuer_received",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:9caef4f1a9290d0c9667320c",
+          "observation": "https://identity.example.invalid/realm/",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/fields/signature_valid",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:2d950839872f96645b422749",
+          "observation": "true",
+          "reliability": 0.5
+        },
+        {
+          "source": "request",
+          "ambiguous": false,
+          "reference": "/request_metadata/authentication_present",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:528d256c15a76cddb234fc34",
+          "observation": "true",
+          "reliability": 0.5
+        },
+        {
+          "source": "response",
+          "ambiguous": false,
+          "reference": "/response_body/error/code",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:462f2018e7f7a839325d8c9c",
+          "observation": "invalid_token",
+          "reliability": 0.5
+        },
+        {
+          "source": "response",
+          "ambiguous": false,
+          "reference": "/response_body/error/message",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:8f9266e58e56a235bb104104",
+          "observation": "JWT issuer validation failed",
+          "reliability": 0.5
+        },
+        {
+          "source": "response",
+          "ambiguous": false,
+          "reference": "/status_code",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:994b4a31ce4c67db8a6b800a",
+          "observation": "401",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/message",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:13e2c4e2de6312daf3a2499a",
+          "observation": "JWT issuer validation rejected the request",
+          "reliability": 0.5
+        },
+        {
+          "source": "user",
+          "ambiguous": false,
+          "reference": "/actual_behavior",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:535f04bb9a69fa28e373a15e",
+          "observation": "JWT authentication fails because the configured and received issuer values differ",
+          "reliability": 0.5
+        },
+        {
+          "source": "user",
+          "ambiguous": false,
+          "reference": "/expected_behavior",
+          "evidence_id": "ev:445a6738dcc690f80f28728a:26b9a5aa7681027872a24190",
+          "observation": "A valid JWT with the configured issuer should authenticate successfully",
+          "reliability": 0.5
+        }
+      ],
+      "missing": [],
+      "completeness": "complete"
+    },
+    "diagnosis": {
+      "status": "inconclusive",
+      "summary": "Competing hypotheses remain unresolved; no discriminating evidence was provided.",
+      "confidence": 0.0,
+      "uncertainty": [
+        "The issuer mismatch is subtle (trailing slash) and may be due to configuration or token generation issues.",
+        "No direct evidence excludes an intermediary modifying the issuer claim.",
+        "The logs do not confirm whether the issuer received is from the original token or modified downstream.",
+        "Evidence does not distinguish competing causes"
+      ],
+      "missing_evidence": [
+        {
+          "description": "Unsafe credential-material request replaced by trusted safety policy; confirmation remains outstanding.",
+          "required_to_resolve": "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+        },
+        {
+          "description": "Unsafe credential-material request replaced by trusted safety policy; confirmation remains outstanding.",
+          "required_to_resolve": "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+        }
+      ],
+      "diagnostic_checks": [
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+      ],
+      "selected_hypothesis_id": null,
+      "discriminating_evidence_ids": []
+    },
+    "thread_id": "03ecff0d-22e9-47a9-bb9e-83ed5b8252ed",
+    "hypotheses": [
+      {
+        "confidence": 0.7,
+        "assumptions": [
+          "Issuer comparison is exact string match including trailing slashes",
+          "The JWT signature is valid and does not cause rejection",
+          "No intermediary or proxy modifies the issuer claim"
+        ],
+        "description": "The JWT authentication failure is caused by a mismatch between the configured issuer and the issuer claim in the received JWT token, specifically due to a trailing slash difference.",
+        "hypothesis_id": "H1",
+        "evidence_assessments": [
+          {
+            "relation": "supporting",
+            "explanation": "The logs and user observation indicate the issuer received ('https://identity.example.invalid/realm/') differs from the configured issuer ('https://identity.example.invalid/realm') causing issuer validation failure and 401 response.",
+            "evidence_ids": [
+              "ev:445a6738dcc690f80f28728a:535f04bb9a69fa28e373a15e",
+              "ev:445a6738dcc690f80f28728a:a28022ef5de042052a4d334c",
+              "ev:445a6738dcc690f80f28728a:9caef4f1a9290d0c9667320c",
+              "ev:445a6738dcc690f80f28728a:13e2c4e2de6312daf3a2499a",
+              "ev:445a6738dcc690f80f28728a:462f2018e7f7a839325d8c9c",
+              "ev:445a6738dcc690f80f28728a:8f9266e58e56a235bb104104",
+              "ev:445a6738dcc690f80f28728a:994b4a31ce4c67db8a6b800a"
+            ],
+            "hypothesis_prediction": "Issuer mismatch causes authentication failure with 401 and invalid_token error."
+          }
+        ],
+        "supporting_evidence_ids": [
+          "ev:445a6738dcc690f80f28728a:535f04bb9a69fa28e373a15e",
+          "ev:445a6738dcc690f80f28728a:a28022ef5de042052a4d334c",
+          "ev:445a6738dcc690f80f28728a:9caef4f1a9290d0c9667320c",
+          "ev:445a6738dcc690f80f28728a:13e2c4e2de6312daf3a2499a",
+          "ev:445a6738dcc690f80f28728a:462f2018e7f7a839325d8c9c",
+          "ev:445a6738dcc690f80f28728a:8f9266e58e56a235bb104104",
+          "ev:445a6738dcc690f80f28728a:994b4a31ce4c67db8a6b800a"
+        ],
+        "contradicting_evidence_ids": []
+      },
+      {
+        "confidence": 0.3,
+        "assumptions": [
+          "An intermediary or proxy exists between client and authentication service",
+          "The intermediary modifies or appends a trailing slash to the issuer claim",
+          "Logs reflect the final received issuer after intermediary modification"
+        ],
+        "description": "The JWT authentication failure is caused by an intermediary or proxy modifying the issuer claim or causing a mismatch between the configured and received issuer values.",
+        "hypothesis_id": "H2",
+        "evidence_assessments": [
+          {
+            "relation": "supporting",
+            "explanation": "The issuer received differs from configured issuer, which could be explained by an intermediary modifying the token or issuer claim.",
+            "evidence_ids": [
+              "ev:445a6738dcc690f80f28728a:535f04bb9a69fa28e373a15e",
+              "ev:445a6738dcc690f80f28728a:a28022ef5de042052a4d334c",
+              "ev:445a6738dcc690f80f28728a:9caef4f1a9290d0c9667320c",
+              "ev:445a6738dcc690f80f28728a:13e2c4e2de6312daf3a2499a",
+              "ev:445a6738dcc690f80f28728a:462f2018e7f7a839325d8c9c",
+              "ev:445a6738dcc690f80f28728a:8f9266e58e56a235bb104104",
+              "ev:445a6738dcc690f80f28728a:994b4a31ce4c67db8a6b800a"
+            ],
+            "hypothesis_prediction": "Intermediary modification causes issuer mismatch and authentication failure."
+          }
+        ],
+        "supporting_evidence_ids": [
+          "ev:445a6738dcc690f80f28728a:535f04bb9a69fa28e373a15e",
+          "ev:445a6738dcc690f80f28728a:a28022ef5de042052a4d334c",
+          "ev:445a6738dcc690f80f28728a:9caef4f1a9290d0c9667320c",
+          "ev:445a6738dcc690f80f28728a:13e2c4e2de6312daf3a2499a",
+          "ev:445a6738dcc690f80f28728a:462f2018e7f7a839325d8c9c",
+          "ev:445a6738dcc690f80f28728a:8f9266e58e56a235bb104104",
+          "ev:445a6738dcc690f80f28728a:994b4a31ce4c67db8a6b800a"
+        ],
+        "contradicting_evidence_ids": []
+      }
+    ],
+    "incident_id": "6134e2b2-081c-4aa7-a713-07a65781ebd7",
+    "max_retries": 2,
+    "stop_reason": "user_input_required",
+    "final_report": null,
+    "proposed_fix": null,
+    "retry_counts": {
+      "validator": 0,
+      "classifier": 0,
+      "log_investigator": 0,
+      "root_cause_analyst": 0,
+      "resolution_generator": 0
+    },
+    "classification": {
+      "category": "authentication",
+      "reasoning": "The failure is due to JWT issuer validation failure, which is an authentication error. The token signature is valid (E06), authentication is present (E08), but the issuer received differs from the configured issuer (E04 vs E05), causing the authentication to fail with a 401 status (E11) and an 'invalid_token' error code (E09). This indicates an authentication failure rather than authorization or other categories.",
+      "confidence": 0.9,
+      "evidence_references": [
+        "/logs/0/fields/issuer_configured",
+        "/logs/0/fields/issuer_received",
+        "/logs/0/fields/signature_valid",
+        "/request_metadata/authentication_present",
+        "/response_body/error/code",
+        "/status_code"
+      ]
+    },
+    "sanitized_inputs": {
+      "logs": [
+        {
+          "fields": {
+            "issuer_received": "https://identity.example.invalid/realm/",
+            "signature_valid": true,
+            "issuer_configured": "https://identity.example.invalid/realm"
+          },
+          "message": "JWT issuer validation rejected the request",
+          "correlation_id": "manual-issuer-final-001"
+        }
+      ],
+      "service": "JWT Authentication Service - Final Test",
+      "endpoint": "/auth/verify",
+      "severity": "medium",
+      "http_method": "POST",
+      "incident_id": "6134e2b2-081c-4aa7-a713-07a65781ebd7",
+      "status_code": 401,
+      "response_body": {
+        "error": {
+          "code": "invalid_token",
+          "message": "JWT issuer validation failed"
+        }
+      },
+      "actual_behavior": "JWT authentication fails because the configured and received issuer values differ",
+      "evidence_quality": "unknown",
+      "request_metadata": {
+        "token_type": "[REDACTED]",
+        "authentication_present": true,
+        "token_signature_reported_valid": "[REDACTED]"
+      },
+      "expected_behavior": "A valid JWT with the configured issuer should authenticate successfully"
+    },
+    "validation_results": [],
+    "pending_user_questions": [
+      "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+    ],
+    "consumed_evidence_sources": [],
+    "available_evidence_sources": []
+  }
+}

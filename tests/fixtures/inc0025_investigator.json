@@ -1,0 +1,56 @@
+{
+  "evidence": {
+    "completeness": "partial",
+    "items": [
+      {
+        "ambiguous": false,
+        "evidence_id": "e1",
+        "observation": "403",
+        "reference": "/status_code",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e2",
+        "observation": "HTTP_403",
+        "reference": "/response_body/error/code",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e3",
+        "observation": "Request could not be completed",
+        "reference": "/response_body/error/message",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e4",
+        "observation": "API request failed",
+        "reference": "/logs/1/message",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e5",
+        "observation": "status_code 403",
+        "reference": "/logs/1/fields/status_code",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e6",
+        "observation": "Outbound synthetic API request started",
+        "reference": "/logs/0/message",
+        "reliability": 1.0,
+        "source": "log"
+      }
+    ],
+    "missing": []
+  }
+}

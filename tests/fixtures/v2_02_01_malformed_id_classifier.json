@@ -1,0 +1,13 @@
+{
+  "classification": {
+    "category": "authentication",
+    "confidence": 0.9,
+    "evidence_references": [
+      "ev:0c6356a631eac707ed86a9ef:994b4a31ce4c67db8a6b800a",
+      "ev:0c6356a631eac707ed86a9ef:e9ba050608c5e8ed1e56eb4c",
+      "ev:0c6356a631eac707ed86a9ef:80e471b41df9c69834bb8bd3",
+      "ev:0c6356a631eac707ed86a9ef:0c6356a631eac707ed86a9ef:8414e84ec0e69a063f64765d"
+    ],
+    "reasoning": "The HTTP status code 401 indicates an authentication failure, meaning the client could not complete its intended operation due to lack of valid authentication credentials. The logs and response confirm the upstream response was inspected and resulted in a 401 Unauthorized status, consistent with an authentication issue rather than authorization, validation, or other categories."
+  }
+}

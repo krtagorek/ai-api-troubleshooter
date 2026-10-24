@@ -1,0 +1,110 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "diagnostic-contract-fixture-1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "fixture_only": {
+      "default": true,
+      "title": "Fixture Only",
+      "type": "boolean"
+    },
+    "tenant_id": {
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "owner_id": {
+      "title": "Owner Id",
+      "type": "string"
+    },
+    "api_registry_id": {
+      "title": "Api Registry Id",
+      "type": "string"
+    },
+    "approved_endpoint_revision": {
+      "minimum": 1,
+      "title": "Approved Endpoint Revision",
+      "type": "integer"
+    },
+    "contract_id": {
+      "title": "Contract Id",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "shared_metric": {
+      "default": "fencing_epoch",
+      "title": "Shared Metric",
+      "type": "string"
+    },
+    "fencing_domain": {
+      "title": "Fencing Domain",
+      "type": "string"
+    },
+    "authoritative_producer": {
+      "title": "Authoritative Producer",
+      "type": "string"
+    },
+    "max_age_seconds": {
+      "maximum": 3600,
+      "minimum": 1,
+      "title": "Max Age Seconds",
+      "type": "integer"
+    },
+    "ordering": {
+      "default": "strict_integer_monotonic_within_term",
+      "title": "Ordering",
+      "type": "string"
+    },
+    "unit": {
+      "default": "ordinal",
+      "title": "Unit",
+      "type": "string"
+    },
+    "reset_policy": {
+      "default": "reject_term_change",
+      "title": "Reset Policy",
+      "type": "string"
+    },
+    "wraparound_policy": {
+      "default": "reject",
+      "title": "Wraparound Policy",
+      "type": "string"
+    },
+    "supported_inference": {
+      "default": "qualified_stale_fencing_only",
+      "title": "Supported Inference",
+      "type": "string"
+    },
+    "log_index": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Log Index",
+      "type": "integer"
+    },
+    "rejection_code": {
+      "default": "stale-fencing-epoch",
+      "title": "Rejection Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "tenant_id",
+    "owner_id",
+    "api_registry_id",
+    "approved_endpoint_revision",
+    "contract_id",
+    "version",
+    "fencing_domain",
+    "authoritative_producer",
+    "max_age_seconds",
+    "log_index"
+  ],
+  "title": "EpochContract",
+  "type": "object"
+}

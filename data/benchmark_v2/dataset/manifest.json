@@ -1,0 +1,505 @@
+{
+  "family_assignment": {
+    "abac-environment": "development",
+    "compression-double": "test",
+    "decimal-scale": "test",
+    "dependency-protocol": "development",
+    "dns-search-delay": "development",
+    "envelope-cardinality": "test",
+    "issuer-canonicalization": "development",
+    "jwks-stale-cache": "test",
+    "ndjson-framing": "development",
+    "object-retention-lock": "test",
+    "partition-hotspot": "test",
+    "recursive-template": "development",
+    "shared-egress-quota": "development",
+    "stale-leader-lease": "test",
+    "timestamp-unit": "development",
+    "upload-buffer-deadline": "test"
+  },
+  "membership": {
+    "V2-01-01": {
+      "family_id": "issuer-canonicalization",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-01-02": {
+      "family_id": "issuer-canonicalization",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-01-03": {
+      "family_id": "issuer-canonicalization",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-01-04": {
+      "family_id": "issuer-canonicalization",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-01-05": {
+      "family_id": "issuer-canonicalization",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-02-01": {
+      "family_id": "jwks-stale-cache",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-02-02": {
+      "family_id": "jwks-stale-cache",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-02-03": {
+      "family_id": "jwks-stale-cache",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-02-04": {
+      "family_id": "jwks-stale-cache",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-02-05": {
+      "family_id": "jwks-stale-cache",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-03-01": {
+      "family_id": "abac-environment",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-03-02": {
+      "family_id": "abac-environment",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-03-03": {
+      "family_id": "abac-environment",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-03-04": {
+      "family_id": "abac-environment",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-03-05": {
+      "family_id": "abac-environment",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-04-01": {
+      "family_id": "object-retention-lock",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-04-02": {
+      "family_id": "object-retention-lock",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-04-03": {
+      "family_id": "object-retention-lock",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-04-04": {
+      "family_id": "object-retention-lock",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-04-05": {
+      "family_id": "object-retention-lock",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-05-01": {
+      "family_id": "timestamp-unit",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-05-02": {
+      "family_id": "timestamp-unit",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-05-03": {
+      "family_id": "timestamp-unit",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-05-04": {
+      "family_id": "timestamp-unit",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-05-05": {
+      "family_id": "timestamp-unit",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-06-01": {
+      "family_id": "decimal-scale",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-06-02": {
+      "family_id": "decimal-scale",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-06-03": {
+      "family_id": "decimal-scale",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-06-04": {
+      "family_id": "decimal-scale",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-06-05": {
+      "family_id": "decimal-scale",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-07-01": {
+      "family_id": "shared-egress-quota",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-07-02": {
+      "family_id": "shared-egress-quota",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-07-03": {
+      "family_id": "shared-egress-quota",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-07-04": {
+      "family_id": "shared-egress-quota",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-07-05": {
+      "family_id": "shared-egress-quota",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-08-01": {
+      "family_id": "partition-hotspot",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-08-02": {
+      "family_id": "partition-hotspot",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-08-03": {
+      "family_id": "partition-hotspot",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-08-04": {
+      "family_id": "partition-hotspot",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-08-05": {
+      "family_id": "partition-hotspot",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-09-01": {
+      "family_id": "recursive-template",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-09-02": {
+      "family_id": "recursive-template",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-09-03": {
+      "family_id": "recursive-template",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-09-04": {
+      "family_id": "recursive-template",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-09-05": {
+      "family_id": "recursive-template",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-10-01": {
+      "family_id": "compression-double",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-10-02": {
+      "family_id": "compression-double",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-10-03": {
+      "family_id": "compression-double",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-10-04": {
+      "family_id": "compression-double",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-10-05": {
+      "family_id": "compression-double",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-11-01": {
+      "family_id": "dependency-protocol",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-11-02": {
+      "family_id": "dependency-protocol",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-11-03": {
+      "family_id": "dependency-protocol",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-11-04": {
+      "family_id": "dependency-protocol",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-11-05": {
+      "family_id": "dependency-protocol",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-12-01": {
+      "family_id": "stale-leader-lease",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-12-02": {
+      "family_id": "stale-leader-lease",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-12-03": {
+      "family_id": "stale-leader-lease",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-12-04": {
+      "family_id": "stale-leader-lease",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-12-05": {
+      "family_id": "stale-leader-lease",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-13-01": {
+      "family_id": "dns-search-delay",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-13-02": {
+      "family_id": "dns-search-delay",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-13-03": {
+      "family_id": "dns-search-delay",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-13-04": {
+      "family_id": "dns-search-delay",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-13-05": {
+      "family_id": "dns-search-delay",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-14-01": {
+      "family_id": "upload-buffer-deadline",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-14-02": {
+      "family_id": "upload-buffer-deadline",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-14-03": {
+      "family_id": "upload-buffer-deadline",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-14-04": {
+      "family_id": "upload-buffer-deadline",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-14-05": {
+      "family_id": "upload-buffer-deadline",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    },
+    "V2-15-01": {
+      "family_id": "ndjson-framing",
+      "log_shape": 0,
+      "split": "development",
+      "variant": 0
+    },
+    "V2-15-02": {
+      "family_id": "ndjson-framing",
+      "log_shape": 1,
+      "split": "development",
+      "variant": 1
+    },
+    "V2-15-03": {
+      "family_id": "ndjson-framing",
+      "log_shape": 2,
+      "split": "development",
+      "variant": 2
+    },
+    "V2-15-04": {
+      "family_id": "ndjson-framing",
+      "log_shape": 3,
+      "split": "development",
+      "variant": 3
+    },
+    "V2-15-05": {
+      "family_id": "ndjson-framing",
+      "log_shape": 4,
+      "split": "development",
+      "variant": 4
+    },
+    "V2-16-01": {
+      "family_id": "envelope-cardinality",
+      "log_shape": 0,
+      "split": "test",
+      "variant": 0
+    },
+    "V2-16-02": {
+      "family_id": "envelope-cardinality",
+      "log_shape": 1,
+      "split": "test",
+      "variant": 1
+    },
+    "V2-16-03": {
+      "family_id": "envelope-cardinality",
+      "log_shape": 2,
+      "split": "test",
+      "variant": 2
+    },
+    "V2-16-04": {
+      "family_id": "envelope-cardinality",
+      "log_shape": 3,
+      "split": "test",
+      "variant": 3
+    },
+    "V2-16-05": {
+      "family_id": "envelope-cardinality",
+      "log_shape": 4,
+      "split": "test",
+      "variant": 4
+    }
+  },
+  "seed": 1324001,
+  "split_strategy": "family_assignment_before_variants",
+  "version": 2
+}

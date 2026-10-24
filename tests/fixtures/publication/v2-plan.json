@@ -1,0 +1,51 @@
+{
+  "aggregate_budget_usd": "2",
+  "benchmark_version": 2,
+  "carried_prior_spend_usd": "0.0170944",
+  "case_count": 5,
+  "coverage": {
+    "evidence_quality": {
+      "ambiguous": 2,
+      "complete": 3
+    },
+    "family_count": 5,
+    "note": "Five-case smoke plan does not cover all eight categories.",
+    "status_codes": [
+      200,
+      401,
+      403,
+      500,
+      504
+    ]
+  },
+  "dataset_sha256": "39a0c9f11d4fb64deed184a8d39348b2a3d59439d3fc765674504228f512986d",
+  "execution_enabled": false,
+  "input_rate_per_million": "0.40",
+  "maximum_new_calls": 26,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "new_reservation_ceiling_usd": "0.4046848",
+  "output_rate_per_million": "1.60",
+  "paid_calls_authorized": false,
+  "plan_sha256": "c31a8fd82bad00e9e7fd988f4344678ae12dcd3c8c70c343bb43d62dedcd4175",
+  "prior_ledger_sha256": "e1db0c1209daef94c02dac27b85f5a676f147fd5d87787ba37eeb14c0621b4f5",
+  "requirements": [
+    "Explicit paid approval",
+    "Reverify pricing and account access",
+    "V2-aware evaluator; never use V1 CAUSES taxonomy",
+    "Carry forward prior ledger atomically",
+    "Review family isolation and semantic rubric"
+  ],
+  "retries": 0,
+  "rubric_version": "v2-semantic-1",
+  "selected_ids": [
+    "V2-02-01",
+    "V2-04-04",
+    "V2-10-02",
+    "V2-14-05",
+    "V2-16-03"
+  ],
+  "semantic_rubric_sha256": "770510a6df1d1ff15146d13becea378845ef7df01b06c7e8390e051321f84514",
+  "status": "prepared_not_approved_not_executed",
+  "stop_on_first_failure": true,
+  "tools_enabled": false
+}

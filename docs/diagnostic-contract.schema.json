@@ -1,0 +1,352 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed production diagnostic contract - design only",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "diagnostic-contract-design-1"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "owner_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "contract_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "contract_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "endpoint_registry_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "approved_endpoint_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "endpoint_policy_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "approval_status": {
+      "enum": [
+        "draft",
+        "owner_verified",
+        "security_reviewed",
+        "approved",
+        "active",
+        "revoked",
+        "superseded"
+      ]
+    },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pointer": {
+            "type": "string",
+            "pattern": "^/(logs|response_body|request_metadata)/"
+          },
+          "role": {
+            "enum": [
+              "observed",
+              "expected",
+              "upper_bound",
+              "lower_bound",
+              "routed_epoch",
+              "current_epoch",
+              "term",
+              "domain",
+              "resource",
+              "correlation",
+              "rejection",
+              "observation_time",
+              "producer",
+              "reachability",
+              "routed_term",
+              "current_term"
+            ]
+          },
+          "metric_or_domain": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          },
+          "data_type": {
+            "enum": [
+              "integer",
+              "number",
+              "string",
+              "boolean"
+            ]
+          },
+          "unit": {
+            "enum": [
+              "ordinal",
+              "ms",
+              "seconds",
+              "bytes",
+              "dimensionless",
+              "identifier"
+            ]
+          }
+        },
+        "required": [
+          "pointer",
+          "role",
+          "metric_or_domain",
+          "data_type",
+          "unit"
+        ]
+      }
+    },
+    "ordering": {
+      "type": "object",
+      "properties": {
+        "operator": {
+          "enum": [
+            "equal",
+            "less_than",
+            "greater_than"
+          ]
+        },
+        "reset_policy": {
+          "enum": [
+            "reject",
+            "explicit_term_transition"
+          ]
+        },
+        "wraparound_policy": {
+          "enum": [
+            "reject",
+            "approved_modulus"
+          ]
+        },
+        "term_policy": {
+          "enum": [
+            "same_term_required",
+            "explicit_transition_required"
+          ]
+        },
+        "modulus": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 2
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "operator",
+        "reset_policy",
+        "wraparound_policy",
+        "term_policy"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "authoritative_producer": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        "attestation_policy_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        "max_age_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_clock_skew_seconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chronology_policy_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        }
+      },
+      "required": [
+        "authoritative_producer",
+        "attestation_policy_id",
+        "max_age_seconds",
+        "max_clock_skew_seconds",
+        "chronology_policy_id"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fencing_domain": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        "resource_binding_policy": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        "correlation_binding_policy": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        }
+      },
+      "required": [
+        "fencing_domain",
+        "resource_binding_policy",
+        "correlation_binding_policy"
+      ]
+    },
+    "rejection_definitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          },
+          "meaning_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          },
+          "required_corroborating_roles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+            }
+          },
+          "permitted_claim_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+          }
+        },
+        "required": [
+          "code",
+          "meaning_id",
+          "required_corroborating_roles",
+          "permitted_claim_id"
+        ]
+      }
+    },
+    "contradiction_policy": {
+      "enum": [
+        "hold",
+        "approved_chronology_policy"
+      ]
+    },
+    "revocation_revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "supersedes_digest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contract_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "owner_verification_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "security_review_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "approval_decision_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "activation_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "revoked_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "superseded_by_version": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    }
+  },
+  "description": "Design only. Approval_status is server-owned metadata, never accepted as owner-supplied authorization. An operator/claim ID requires an implemented allowlisted compiler; schema validation alone does not implement or approve semantics.",
+  "required": [
+    "schema_version",
+    "tenant_id",
+    "owner_id",
+    "contract_id",
+    "contract_version",
+    "endpoint_registry_id",
+    "approved_endpoint_revision",
+    "endpoint_policy_digest",
+    "approval_status",
+    "fields",
+    "ordering",
+    "provenance",
+    "scope",
+    "rejection_definitions",
+    "contradiction_policy",
+    "revocation_revision",
+    "supersedes_digest",
+    "contract_digest",
+    "owner_verification_id",
+    "security_review_id",
+    "approval_decision_id",
+    "activation_id",
+    "revoked_at",
+    "superseded_by_version"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "completeness": "partial",
+  "diagnostic_gaps": [
+    {
+      "description": "No direct evidence of the authentication token or credentials presented in the request to confirm mismatch or rejection.",
+      "required_to_resolve": "Request authentication token or credential details and validation results from the authentication service."
+    }
+  ],
+  "evidence_contract": "evidence-handles-v1",
+  "evidence_snapshot": "1a4994ebdfcc493f0504b4f534f42a9ef2b7e728124a426fd0ca5c506c7e59b9",
+  "selected_evidence_handles": [
+    "E01",
+    "E04",
+    "E05",
+    "E06",
+    "E07",
+    "E20"
+  ]
+}

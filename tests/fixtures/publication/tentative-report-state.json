@@ -1,0 +1,229 @@
+{
+  "available_evidence_sources": [],
+  "classification": {
+    "category": "dependency_failure",
+    "confidence": 0.8,
+    "evidence_references": [
+      "/status_code"
+    ],
+    "reasoning": "Synthetic dependency rejection"
+  },
+  "consumed_evidence_sources": [],
+  "diagnosis": {
+    "confidence": 0.5,
+    "diagnostic_checks": [],
+    "discriminating_evidence_ids": [
+      "ev:2af2de21b605021d8e0ceb7c:d0d901933d2beb5fd47648dd",
+      "ev:2af2de21b605021d8e0ceb7c:92338b8a96270a7108e3b383",
+      "ev:2af2de21b605021d8e0ceb7c:d6c6f3b0d09372896e708ab4"
+    ],
+    "missing_evidence": [],
+    "selected_hypothesis_id": "fencing",
+    "status": "tentative",
+    "summary": "Qualified stale fencing rejection; stale routing origin remains unconfirmed",
+    "uncertainty": [
+      "The source of obsolete routing is not established.",
+      "Evidence is incomplete or conflicting"
+    ]
+  },
+  "evidence": {
+    "completeness": "partial",
+    "items": [
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:d0d901933d2beb5fd47648dd",
+        "observation": "stale-fencing-epoch",
+        "reference": "/logs/0/fields/rejection",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:f0f7842360e67337d2c7196a",
+        "observation": "acceptance-1",
+        "reference": "/logs/0/fields/correlation",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:92338b8a96270a7108e3b383",
+        "observation": "43",
+        "reference": "/logs/0/fields/current_epoch",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:2bac9f51aef33e3ecbb1090c",
+        "observation": "2",
+        "reference": "/logs/0/fields/current_term",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:1420fd9ec0393bf4c799a60d",
+        "observation": "demo-domain",
+        "reference": "/logs/0/fields/domain",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:b7ea79bedd8539bd333c46a3",
+        "observation": "2026-10-24T03:19:25.047310+00:00",
+        "reference": "/logs/0/fields/observed_at",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:d017de9e63fe950dd5c3d4b5",
+        "observation": "owner-coordinator",
+        "reference": "/logs/0/fields/producer",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:c312f44d3a4468c52ca4744b",
+        "observation": "true",
+        "reference": "/logs/0/fields/reachability",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:fdc142d456a10d0accb53e03",
+        "observation": "resource-1",
+        "reference": "/logs/0/fields/resource",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:d6c6f3b0d09372896e708ab4",
+        "observation": "41",
+        "reference": "/logs/0/fields/routed_epoch",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:9f1aa475f3ac8024fbcdf2e4",
+        "observation": "2",
+        "reference": "/logs/0/fields/routed_term",
+        "reliability": 0.5,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "ev:2af2de21b605021d8e0ceb7c:bde73980b65a0786f0112aa0",
+        "observation": "Fencing rejection",
+        "reference": "/logs/0/message",
+        "reliability": 0.5,
+        "source": "log"
+      }
+    ],
+    "missing": []
+  },
+  "final_report": null,
+  "hypotheses": [
+    {
+      "assumptions": [],
+      "confidence": 0.5,
+      "contradicting_evidence_ids": [],
+      "description": "Qualified stale fencing epoch rejection",
+      "evidence_assessments": [],
+      "hypothesis_id": "fencing",
+      "supporting_evidence_ids": [
+        "ev:2af2de21b605021d8e0ceb7c:d0d901933d2beb5fd47648dd",
+        "ev:2af2de21b605021d8e0ceb7c:92338b8a96270a7108e3b383",
+        "ev:2af2de21b605021d8e0ceb7c:d6c6f3b0d09372896e708ab4"
+      ]
+    }
+  ],
+  "incident_id": "2090d1d4-d3b2-4dbc-8e79-852b5527d0e9",
+  "max_retries": 2,
+  "pending_user_questions": [
+    "Provide real or simulated validation results for the proposed fix"
+  ],
+  "proposed_fix": {
+    "evidence_ids": [
+      "ev:2af2de21b605021d8e0ceb7c:d0d901933d2beb5fd47648dd",
+      "ev:2af2de21b605021d8e0ceb7c:92338b8a96270a7108e3b383",
+      "ev:2af2de21b605021d8e0ceb7c:d6c6f3b0d09372896e708ab4"
+    ],
+    "plan_kind": "diagnostic",
+    "prerequisites": [],
+    "requires_human_approval": true,
+    "risks": [],
+    "steps": [
+      "Inspect sanitized coordinator epoch authority and routing diagnostics"
+    ],
+    "summary": "Inspect authoritative routing metadata",
+    "verification_steps": [
+      "Request a human-approved controlled verification"
+    ]
+  },
+  "retry_counts": {
+    "classifier": 0,
+    "log_investigator": 0,
+    "resolution_generator": 0,
+    "root_cause_analyst": 0,
+    "validator": 0
+  },
+  "sanitized_inputs": {
+    "actual_behavior": "Dependency rejected an obsolete fencing epoch.",
+    "endpoint": "/health",
+    "evidence_quality": "unknown",
+    "expected_behavior": "Route with an authoritative current fencing epoch.",
+    "http_method": "GET",
+    "incident_id": "2090d1d4-d3b2-4dbc-8e79-852b5527d0e9",
+    "logs": [
+      {
+        "correlation_id": "acceptance-1",
+        "fields": {
+          "correlation": "acceptance-1",
+          "current_epoch": 43,
+          "current_term": 2,
+          "domain": "demo-domain",
+          "observed_at": "2026-10-24T03:19:25.047310+00:00",
+          "producer": "owner-coordinator",
+          "reachability": true,
+          "rejection": "stale-fencing-epoch",
+          "resource": "resource-1",
+          "routed_epoch": 41,
+          "routed_term": 2
+        },
+        "message": "Fencing rejection"
+      }
+    ],
+    "request_metadata": {},
+    "response_body": null,
+    "service": "Phase 14.6 Synthetic Fencing",
+    "severity": "unknown",
+    "status_code": 503
+  },
+  "status": "awaiting_evidence",
+  "stop_reason": "user_input_required",
+  "thread_id": "9e388d9c-94b0-427f-a1ff-42aed825e80e",
+  "trusted_semantic": {
+    "result_digest": "479652f53ff6dabe0b059cd3bf05410ef28008cdde137eb758c642f07d214f04",
+    "result_ref": "ace2b5f9-4c14-4408-93fa-2ecf3280ab4e",
+    "snapshot_digest": "2af2de21b605021d8e0ceb7cb4fec114d112aeb928f1f42adbf2d950bf5b2712",
+    "status": "qualified",
+    "version": "trusted-semantic-1"
+  },
+  "validation_results": [
+    {
+      "checks": [],
+      "issues": [
+        "No approved validation tool executed"
+      ],
+      "retry_recommended": false,
+      "status": "NOT_TESTED"
+    }
+  ]
+}

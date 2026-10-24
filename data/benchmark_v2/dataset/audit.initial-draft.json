@@ -1,0 +1,72 @@
+{
+  "blocking_errors": [],
+  "counts": {
+    "development": 40,
+    "test": 40
+  },
+  "coverage": {
+    "development": {
+      "log_shapes": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 8,
+        "4": 8
+      },
+      "quality": {
+        "ambiguous": 16,
+        "complete": 24
+      },
+      "status": {
+        "200": 5,
+        "401": 5,
+        "403": 5,
+        "422": 5,
+        "429": 5,
+        "500": 5,
+        "503": 5,
+        "504": 5
+      }
+    },
+    "test": {
+      "log_shapes": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 8,
+        "4": 8
+      },
+      "quality": {
+        "ambiguous": 16,
+        "complete": 24
+      },
+      "status": {
+        "200": 5,
+        "401": 5,
+        "403": 5,
+        "422": 5,
+        "429": 5,
+        "500": 5,
+        "503": 5,
+        "504": 5
+      }
+    }
+  },
+  "cross_split_diagnostic_duplicates": [],
+  "cross_split_near_duplicates": [],
+  "dataset_sha256": "7ca7380e151e409580424dabdc422dd9ebe13d822e9cef572d3caf8aae2616b6",
+  "family_count": 16,
+  "family_overlap": 0,
+  "file_sha256": {
+    "inference/development.jsonl": "e37473b691a26bf3cfac2979ec228f52eaff9dcff1d834e1258f92cda24bab29",
+    "inference/test.jsonl": "25b9ff633398c4e2fc846e0548888d765be19a523ce0db5b73bd19589199a21a",
+    "labels/development.jsonl": "ba0a1197dd9c6ec063cdc9eb859b8e92161faf9217f6a0297cf0f9279b805a7c",
+    "labels/test.jsonl": "820866d857331eb0c97592512b53ff2c6fb8fd37d4ec6ca9e762815a5eb1802e",
+    "manifest.json": "a78caacfe92af27e38e68fbed635db1a1a267b0f814fd27141155f676a1a64cb"
+  },
+  "independence_scope": "Family-disjoint synthetic split only. Semantic overlap and generator bias require human review; no independent performance claim.",
+  "near_duplicate_policy": "Diagnostic key/value token Jaccard >= 0.85; log layout and IDs excluded. Not a semantic proof.",
+  "normalized_duplicate_groups": [],
+  "v1_normalized_payload_overlap": 0,
+  "version": 2
+}

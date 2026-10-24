@@ -1,0 +1,13 @@
+# Extend maintained upstream rules. Never allow an entire tests directory.
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+# All detection attributes are inherited unchanged from the upstream rule.
+[[rules.allowlists]]
+description = "Synthetic key-service outage: provider is assigned None, never a credential"
+condition = "AND"
+paths = ['''(?:^|/)tests/test_trusted_semantic_integration\.py$''']
+regexTarget = "line"
+regexes = ['''^\s*if failure==["']key_outage["']:integration\.ingestion\.keys=None\s*$''']

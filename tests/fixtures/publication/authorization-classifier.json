@@ -1,0 +1,15 @@
+{
+  "classification": {
+    "category": "authorization",
+    "confidence": 0.8,
+    "evidence_references": [
+      "E01",
+      "E13",
+      "E14",
+      "E16"
+    ],
+    "reasoning": "The HTTP status code 403 indicates that the client is forbidden from accessing the resource, which is a typical sign of an authorization failure. The response body confirms the request was unsuccessful with status 403. There is no evidence of authentication failure, validation errors, rate limiting, timeouts, server errors, schema mismatches, or dependency failures. The evidence quality is ambiguous and diagnostic sampling is incomplete, so confidence is moderate."
+  },
+  "evidence_contract": "evidence-handles-v1",
+  "evidence_snapshot": "48371d96890c62a9dfb68764b2190595bf335b2d32cb3f98765b29273cb294e0"
+}

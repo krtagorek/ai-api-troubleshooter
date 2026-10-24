@@ -1,0 +1,312 @@
+{
+  "origin": {
+    "investigation_id": "1ab839ff-d267-4a7f-9536-cc9bed7b7153",
+    "database": "api_troubleshooter_manual",
+    "capture": "read-only persisted sanitized application output; original provider wording unavailable",
+    "state_sha256": "262bbbb598f12bbb68fe8c9e2345118f721cebb14d67f2a9a10f845d4a7f21a4",
+    "checkpoint_sha256": "9cb2525881ef9bea9076ebbca8529d4dce3beca3406f367d5582362e5e4f5637"
+  },
+  "state": {
+    "status": "awaiting_evidence",
+    "evidence": {
+      "items": [
+        {
+          "source": "user",
+          "ambiguous": false,
+          "reference": "/actual_behavior",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+          "observation": "JWT authentication fails because the configured and received issuer values differ",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/fields/issuer_configured",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+          "observation": "https://identity.example.invalid/realm",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/fields/issuer_received",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+          "observation": "https://identity.example.invalid/realm/",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/fields/signature_valid",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:2d950839872f96645b422749",
+          "observation": "true",
+          "reliability": 0.5
+        },
+        {
+          "source": "log",
+          "ambiguous": false,
+          "reference": "/logs/0/message",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+          "observation": "JWT issuer validation failed.",
+          "reliability": 0.5
+        },
+        {
+          "source": "response",
+          "ambiguous": false,
+          "reference": "/response_body/error/code",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:462f2018e7f7a839325d8c9c",
+          "observation": "invalid_token",
+          "reliability": 0.5
+        },
+        {
+          "source": "response",
+          "ambiguous": false,
+          "reference": "/response_body/error/message",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104",
+          "observation": "JWT issuer validation failed",
+          "reliability": 0.5
+        },
+        {
+          "source": "response",
+          "ambiguous": false,
+          "reference": "/status_code",
+          "evidence_id": "ev:a330053b1ab7f97c12075cac:994b4a31ce4c67db8a6b800a",
+          "observation": "401",
+          "reliability": 0.5
+        }
+      ],
+      "missing": [],
+      "completeness": "complete"
+    },
+    "diagnosis": {
+      "status": "tentative",
+      "summary": "The JWT authentication failure is tentatively attributed to the issuer URL mismatch caused by a trailing slash difference between the configured issuer and the received issuer in the token. This mismatch leads to issuer validation failure despite a valid signature.",
+      "confidence": 0.7,
+      "uncertainty": [
+        "The exact issuer validation logic and normalization behavior is not confirmed.",
+        "No direct evidence of configuration or policy enforcing exact trailing slash match.",
+        "No evidence excludes normalization or parsing errors causing the mismatch."
+      ],
+      "missing_evidence": [
+        {
+          "description": "Unsafe credential-material request replaced by trusted safety policy; confirmation remains outstanding.",
+          "required_to_resolve": "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+        },
+        {
+          "description": "Configuration or policy documentation specifying issuer URL matching rules.",
+          "required_to_resolve": "To verify if strict exact matching including trailing slash is required by policy."
+        }
+      ],
+      "diagnostic_checks": [
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+        "Review security policy on issuer URL matching requirements.",
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+      ],
+      "selected_hypothesis_id": "H1",
+      "discriminating_evidence_ids": [
+        "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+        "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c"
+      ]
+    },
+    "thread_id": "7c7bdcd6-f245-48a6-8d9b-3ddd41e0133f",
+    "hypotheses": [
+      {
+        "confidence": 0.7,
+        "assumptions": [
+          "Issuer URLs are compared as exact strings including trailing slashes.",
+          "The trailing slash difference is significant for issuer validation logic."
+        ],
+        "description": "The JWT issuer validation fails due to a mismatch caused by a trailing slash in the received issuer URL compared to the configured issuer URL.",
+        "hypothesis_id": "H1",
+        "evidence_assessments": [
+          {
+            "relation": "supporting",
+            "explanation": "The evidence shows the configured issuer is 'https://identity.example.invalid/realm' and the received issuer is 'https://identity.example.invalid/realm/' with a trailing slash difference, and the logs and error messages indicate issuer validation failure.",
+            "evidence_ids": [
+              "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+              "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+              "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+              "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+              "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104"
+            ],
+            "hypothesis_prediction": "Issuer mismatch due to trailing slash causes validation failure."
+          }
+        ],
+        "supporting_evidence_ids": [
+          "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+          "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+          "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+          "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+          "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104"
+        ],
+        "contradicting_evidence_ids": []
+      },
+      {
+        "confidence": 0.5,
+        "assumptions": [
+          "Issuer URLs should be logically equivalent ignoring trailing slashes.",
+          "The validation logic does not normalize URLs before comparison."
+        ],
+        "description": "The JWT issuer validation fails due to a configuration or parsing error that causes the issuer URLs to be treated as different despite being logically equivalent (e.g., normalization issues).",
+        "hypothesis_id": "H2",
+        "evidence_assessments": [
+          {
+            "relation": "supporting",
+            "explanation": "The evidence shows issuer URLs differ only by a trailing slash, suggesting a normalization or parsing issue might cause the mismatch.",
+            "evidence_ids": [
+              "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+              "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+              "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+              "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+              "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104"
+            ],
+            "hypothesis_prediction": "Issuer URLs treated as different due to lack of normalization."
+          }
+        ],
+        "supporting_evidence_ids": [
+          "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+          "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+          "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+          "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+          "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104"
+        ],
+        "contradicting_evidence_ids": []
+      },
+      {
+        "confidence": 0.6,
+        "assumptions": [
+          "Security policy enforces exact string match for issuer URLs including trailing slash.",
+          "The token issuer URL is exactly as received in the logs."
+        ],
+        "description": "The JWT issuer validation fails due to an actual security policy requiring exact issuer URL match including trailing slash, and the token was issued with a different issuer URL than configured.",
+        "hypothesis_id": "H3",
+        "evidence_assessments": [
+          {
+            "relation": "supporting",
+            "explanation": "The evidence shows issuer URLs differ by trailing slash and validation fails, consistent with strict policy requiring exact match.",
+            "evidence_ids": [
+              "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+              "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+              "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+              "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+              "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104"
+            ],
+            "hypothesis_prediction": "Strict policy causes validation failure due to trailing slash difference."
+          }
+        ],
+        "supporting_evidence_ids": [
+          "ev:a330053b1ab7f97c12075cac:535f04bb9a69fa28e373a15e",
+          "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+          "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c",
+          "ev:a330053b1ab7f97c12075cac:fff2053bcae57bf77ef0ea3c",
+          "ev:a330053b1ab7f97c12075cac:8f9266e58e56a235bb104104"
+        ],
+        "contradicting_evidence_ids": []
+      }
+    ],
+    "incident_id": "ad42706e-38f9-4cee-bd6c-8802cc2772e1",
+    "max_retries": 2,
+    "stop_reason": "user_input_required",
+    "final_report": null,
+    "proposed_fix": {
+      "risks": [
+        "Requesting sanitized claims requires careful handling to avoid exposure of sensitive data.",
+        "Misinterpretation of policy or configuration could lead to incorrect remediation steps."
+      ],
+      "steps": [
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+        "Consult security policy documentation to confirm if exact string matching including trailing slash is required for issuer validation.",
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+      ],
+      "summary": "Verify issuer URL normalization and matching policy to confirm if trailing slash difference causes JWT issuer validation failure.",
+      "plan_kind": "diagnostic",
+      "evidence_ids": [
+        "ev:a330053b1ab7f97c12075cac:a28022ef5de042052a4d334c",
+        "ev:a330053b1ab7f97c12075cac:9caef4f1a9290d0c9667320c"
+      ],
+      "prerequisites": [
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval."
+      ],
+      "verification_steps": [
+        "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+        "Verify documentation or configuration explicitly states issuer URL matching rules regarding trailing slashes.",
+        "Validate test results showing whether trailing slash differences cause validation failures."
+      ],
+      "requires_human_approval": true
+    },
+    "retry_counts": {
+      "validator": 0,
+      "classifier": 0,
+      "log_investigator": 0,
+      "root_cause_analyst": 0,
+      "resolution_generator": 0
+    },
+    "classification": {
+      "category": "authentication",
+      "reasoning": "The failure is due to JWT authentication failing because the issuer in the token does not match the configured issuer, as indicated by the error message 'JWT issuer validation failed' and the 401 status code. The signature is valid, so the issue is not with token integrity but with authentication parameters, specifically issuer validation.",
+      "confidence": 0.9,
+      "evidence_references": [
+        "/actual_behavior",
+        "/logs/0/fields/issuer_configured",
+        "/logs/0/fields/issuer_received",
+        "/logs/0/fields/signature_valid",
+        "/logs/0/message",
+        "/response_body/error/code",
+        "/response_body/error/message",
+        "/status_code"
+      ]
+    },
+    "sanitized_inputs": {
+      "logs": [
+        {
+          "fields": {
+            "issuer_received": "https://identity.example.invalid/realm/",
+            "signature_valid": true,
+            "issuer_configured": "https://identity.example.invalid/realm"
+          },
+          "message": "JWT issuer validation failed.",
+          "correlation_id": "manual-issuer-001"
+        }
+      ],
+      "service": "JWT Authentication Service",
+      "endpoint": "/auth/verify",
+      "severity": "medium",
+      "http_method": "POST",
+      "incident_id": "ad42706e-38f9-4cee-bd6c-8802cc2772e1",
+      "status_code": 401,
+      "response_body": {
+        "error": {
+          "code": "invalid_token",
+          "message": "JWT issuer validation failed"
+        }
+      },
+      "actual_behavior": "JWT authentication fails because the configured and received issuer values differ",
+      "evidence_quality": "unknown",
+      "request_metadata": {
+        "token_type": "[REDACTED]",
+        "authentication_present": true,
+        "token_signature_reported_valid": "[REDACTED]"
+      },
+      "expected_behavior": "A valid JWT with the configured issuer should authenticate successfully"
+    },
+    "validation_results": [
+      {
+        "checks": [],
+        "issues": [
+          "No real or simulated validation tools are integrated; no checks were executed."
+        ],
+        "status": "NOT_TESTED",
+        "retry_recommended": false
+      }
+    ],
+    "pending_user_questions": [
+      "[OUTPUT SAFETY: credential-material request withheld.] Ask the responsible owner for sanitized issuer, audience and expiry claims, verifier decisions and rejection reasons only. Exclude raw access tokens, refresh tokens, complete JWTs, passwords, API keys, session cookies and reusable credentials. No automatic collection or execution; obtain human approval.",
+      "To verify if strict exact matching including trailing slash is required by policy.",
+      "Provide real or simulated validation results for the proposed fix"
+    ],
+    "consumed_evidence_sources": [],
+    "available_evidence_sources": []
+  }
+}

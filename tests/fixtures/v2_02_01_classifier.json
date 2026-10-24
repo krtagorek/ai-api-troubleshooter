@@ -1,0 +1,14 @@
+{
+  "classification": {
+    "category": "authentication",
+    "confidence": 0.9,
+    "evidence_references": [
+      "/incident/status_code",
+      "/incident/response_body/status",
+      "/incident/response_body/result",
+      "/incident/logs/0/level",
+      "/incident/logs/0/message"
+    ],
+    "reasoning": "The HTTP status code 401 indicates an authentication failure, meaning the client could not authenticate successfully. The response body explicitly states 'request unsuccessful' with status 401, which aligns with authentication errors. The logs show an error level event related to upstream response inspection but do not indicate authorization or validation issues. Therefore, the failure is best categorized as authentication."
+  }
+}

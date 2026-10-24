@@ -1,0 +1,188 @@
+{
+  "evidence": {
+    "completeness": "complete",
+    "items": [
+      {
+        "ambiguous": false,
+        "evidence_id": "E01",
+        "observation": "Observed status 401; the client could not complete its intended operation",
+        "reference": "/actual_behavior",
+        "reliability": 1.0,
+        "source": "user"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E02",
+        "observation": "Return a response satisfying the approved endpoint contract within its deadline",
+        "reference": "/expected_behavior",
+        "reliability": 1.0,
+        "source": "user"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E03",
+        "observation": "synthetic-v2-1-0",
+        "reference": "/logs/0/correlation_id",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E04",
+        "observation": "connector.response",
+        "reference": "/logs/0/event",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E05",
+        "observation": "7200",
+        "reference": "/logs/0/fields/cache_age_seconds",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E06",
+        "observation": "rotation-a",
+        "reference": "/logs/0/fields/cached_kids/0",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E07",
+        "observation": "rotation-b",
+        "reference": "/logs/0/fields/issuer_discovery_kid",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E08",
+        "observation": "300",
+        "reference": "/logs/0/fields/max_age_seconds",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E09",
+        "observation": "rotation-b",
+        "reference": "/logs/0/fields/received_kid",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E10",
+        "observation": "ERROR",
+        "reference": "/logs/0/level",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E11",
+        "observation": "Upstream response inspected",
+        "reference": "/logs/0/message",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E12",
+        "observation": "2026-01-02T12:00:00Z",
+        "reference": "/logs/0/timestamp",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E13",
+        "observation": "synthetic",
+        "reference": "/request_metadata/environment",
+        "reliability": 1.0,
+        "source": "request"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E14",
+        "observation": "complete",
+        "reference": "/request_metadata/evidence_quality",
+        "reliability": 1.0,
+        "source": "request"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E15",
+        "observation": "synthetic-only",
+        "reference": "/request_metadata/headers/X-Demo-Mode",
+        "reliability": 1.0,
+        "source": "request"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E16",
+        "observation": "synthetic-v2-1-0",
+        "reference": "/request_metadata/request_id",
+        "reliability": 1.0,
+        "source": "request"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E17",
+        "observation": "5000",
+        "reference": "/request_metadata/timeout_ms",
+        "reliability": 1.0,
+        "source": "request"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E18",
+        "observation": "synthetic-v2-1-0",
+        "reference": "/response_body/request_id",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E19",
+        "observation": "request unsuccessful",
+        "reference": "/response_body/result",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E20",
+        "observation": "401",
+        "reference": "/response_body/status",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E21",
+        "observation": "2026-01-02T12:00:00Z",
+        "reference": "/response_body/timestamp",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "E22",
+        "observation": "401",
+        "reference": "/status_code",
+        "reliability": 1.0,
+        "source": "response"
+      }
+    ],
+    "missing": []
+  },
+  "evidence_contract": "evidence-handles-v1",
+  "evidence_snapshot": "adb13b8a260c08e3ee427f6b7f9b12cb1418ce6b2a24006e9f3dd15eb61d8c4c",
+  "selected_evidence_handles": [],
+  "selected_evidence_ids": []
+}

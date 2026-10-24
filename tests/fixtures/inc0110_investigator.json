@@ -1,0 +1,64 @@
+{
+  "evidence": {
+    "completeness": "complete",
+    "items": [
+      {
+        "ambiguous": false,
+        "evidence_id": "e1",
+        "observation": "200",
+        "reference": "/status_code",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e2",
+        "observation": "text/html",
+        "reference": "/response_body/content_type",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e3",
+        "observation": "<html>Demo login</html>",
+        "reference": "/response_body/raw_body",
+        "reliability": 1.0,
+        "source": "response"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e4",
+        "observation": "Content-Type=text/html; body begins with a demo login document",
+        "reference": "/logs/1/message",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e5",
+        "observation": "Response contract failed",
+        "reference": "/logs/2/message",
+        "reliability": 1.0,
+        "source": "log"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e6",
+        "observation": "Return HTTP 200 with JSON data containing string id and name and integer quantity",
+        "reference": "/expected_behavior",
+        "reliability": 1.0,
+        "source": "documentation"
+      },
+      {
+        "ambiguous": false,
+        "evidence_id": "e7",
+        "observation": "HTTP 200 received, but the response violates the expected JSON contract",
+        "reference": "/actual_behavior",
+        "reliability": 1.0,
+        "source": "documentation"
+      }
+    ],
+    "missing": []
+  }
+}
